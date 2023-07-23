@@ -6,7 +6,7 @@ import psycopg2
 from FHIR_data_loader import read_nested_json, normalize_nested_json, process_json_files, create_resource_dataframes, create_database, create_table_from_dataframe_bulk
 
 # Provide the path to a test JSON file
-TEST_JSON_FILE = r"C:\Users\ihsiu\Desktop\exa-data-eng-assessment-main\data\sample\Deedra511_Wilkinson796_cced3031-d98c-d870-5dce-f0086d8c7a34.json"
+TEST_JSON_FILE = "data\sample\Deedra511_Wilkinson796_cced3031-d98c-d870-5dce-f0086d8c7a34.json"
 
 TEST_DB_NAME = "test_db_123456789"
 TEST_DB_USER = "postgres"

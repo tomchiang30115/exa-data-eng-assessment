@@ -8,7 +8,6 @@ import numpy as np
 import argparse
 
 
-
 def read_nested_json(file_path):
     # Extract json files from allocated file path and return json format data
     with open(file_path, "r", encoding="utf8") as file:
@@ -171,16 +170,26 @@ data_type_mapping = {
     # Add other mappings as needed
 }
 
+
 def parse_arguments():
     parser = argparse.ArgumentParser(description="FHIR Data Loader Script")
 
-    parser.add_argument("--database_name", required=True, help="Name of the new database")
+    parser.add_argument(
+        "--database_name", required=True, help="Name of the new database"
+    )
     parser.add_argument("--database_user", required=True, help="Database user")
     parser.add_argument("--database_password", required=True, help="Database password")
-    parser.add_argument("--database_host", default="localhost", help="Database host (default: localhost)")
-    parser.add_argument("--database_port", default=5432, type=int, help="Database port (default: 5432)")
+    parser.add_argument(
+        "--database_host",
+        default="localhost",
+        help="Database host (default: localhost)",
+    )
+    parser.add_argument(
+        "--database_port", default=5432, type=int, help="Database port (default: 5432)"
+    )
 
     return parser.parse_args()
+
 
 if __name__ == "__main__":
 
@@ -193,22 +202,6 @@ if __name__ == "__main__":
 
     combined_df = process_json_files(json_directory)
     dataframes_dict = create_resource_dataframes(combined_df)
-
-    # Now you can access each dataframe using its corresponding resource type as the key
-    # For example:
-    df_encounter = dataframes_dict["Encounter"]
-    df_patient = dataframes_dict["Patient"]
-    df_condition = dataframes_dict["Condition"]
-    df_diagrep = dataframes_dict["DiagnosticReport"]
-    df_explan = dataframes_dict["ExplanationOfBenefit"]
-    df_medreq = dataframes_dict["MedicationRequest"]
-    df_careteam = dataframes_dict["CareTeam"]
-    df_careplan = dataframes_dict["CarePlan"]
-    df_procedure = dataframes_dict["Procedure"]
-    df_immun = dataframes_dict["Immunization"]
-    df_observ = dataframes_dict["Observation"]
-    df_proven = dataframes_dict["Provenance"]
-    df_device = dataframes_dict["Device"]
 
     # Replace these variables with your actual database credentials
     # new_database_name = "FHIR_DB"
@@ -226,28 +219,32 @@ if __name__ == "__main__":
     database_host = args.database_host
     database_port = args.database_port
 
-
     # Check if the database already exists
     create_database(
-        new_database_name, database_user, database_password, database_host, database_port
+        new_database_name,
+        database_user,
+        database_password,
+        database_host,
+        database_port,
     )
 
     # Assuming dataframes_dict contains the DataFrames
-    dataframes_dict = {
-        "Encounter": df_encounter,
-        "Patient": df_patient,
-        "Condition": df_condition,
-        "DiagnosticReport": df_diagrep,
-        "ExplanationOfBenefit": df_explan,
-        "MedicationRequest": df_medreq,
-        "CareTeam": df_careteam,
-        "CarePlan": df_careplan,
-        "Procedure": df_procedure,
-        "Immunization": df_immun,
-        "Observation": df_observ,
-        "Provenance": df_proven,
-        "Device": df_device,
-    }
+    resourceType = [
+        "Encounter",
+        "Patient",
+        "Condition",
+        "DiagnosticReport",
+        "ExplanationOfBenefit",
+        "MedicationRequest",
+        "CareTeam",
+        "CarePlan",
+        "Procedure",
+        "Immunization",
+        "Observation",
+        "Provenance",
+        "Device",
+    ]
+    dataframes_dict = {restype: dataframes_dict[restype] for restype in resourceType}
 
     database_name = "fhir_db"
 

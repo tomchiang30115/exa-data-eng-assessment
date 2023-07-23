@@ -43,6 +43,15 @@ Then, run the following command to start the container (ensure you use the same 
 docker run --name <CONTAINER_NAME> -it --rm --network="host" <CONTAINER_IMAGE_NAME> --database_name <DATABASE_NAME> --database_user <DATABASE_USER> --database_password <DATABASE_PASSWORD> --database_host <DATABASE_HOST> --database_port <DATABASE_PORT>
 ```
 
+## Testing
+
+To test the code FHIR_data_loader.py, run the following command to begin testing the code:
+
+```
+python test.py
+```
+Please ensure to input the password and the host to run the test script.
+
 ## Directory Structure
 
 ```
@@ -66,15 +75,15 @@ docker run --name <CONTAINER_NAME> -it --rm --network="host" <CONTAINER_IMAGE_NA
 
 `exa-data-eng-assessment` - This directory contains the main pipeline code.
 
-`data` - Directory hosting the raw input FHIR .json data files which are to be processed by the pipeline.
+`data` - Directory where all FHIR .json data files are, which are to be processed by the pipeline.
 
 `Dockerfile` - This file is used to build the Docker image for the pipeline.
 
-`Initial ET pipeline.ipynb` - This Jupyter notebook is used to run the pipeline in interactive mode.
+`Initial ET pipeline.ipynb` - This Jupyter notebook is used in the beginning to explore around the json files.
 
-`FHIR_data_loader.py` - This is the main Python script that initiates the pipeline.
+`FHIR_data_loader.py` - This is the main Python script that initiates the pipeline and load the data into PostgreSQL database.
 
-`README.md` - This file contains the project documentation.
+`README.md` - This file contains the documentation for the project.
 
 `requirements.txt` - This file contains the Python dependencies required by the pipeline.
 

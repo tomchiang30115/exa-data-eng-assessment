@@ -23,7 +23,7 @@ In the root directory, run the following commands to install the required depend
 ```
 pip install --no-cache-dir --upgrade -r requirements.txt
 ```
-Then, run the pipeline in interactive mode through the FHIR_data_loader.py:
+Then, run the pipeline by putting the command below in the terminal:
 
 ```
 python FHIR_data_loader.py --database_name <DATABASE_NAME> --database_user <DATABASE_USER> --database_password <DATABASE_PASSWORD> --database_host <DATABASE_HOST> --database_port <DATABASE_PORT>
